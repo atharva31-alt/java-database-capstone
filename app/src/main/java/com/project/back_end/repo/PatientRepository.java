@@ -7,6 +7,10 @@ import java.util.Optional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-    // Custom database abstraction query method
+    
+    // Criterion 1: Accepts an email address as input and returns an Optional
     Optional<Patient> findByEmail(String email);
+    
+    // Criterion 2: Enhancements allowing dual flexible retrieval based on either email OR phone number
+    Optional<Patient> findByEmailOrPhone(String email, String phone);
 }
