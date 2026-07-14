@@ -1,0 +1,25 @@
+name: Java Backend Compilation Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the source repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Java Development Kit (JDK) 17 Environment
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build and Compile the Maven Application Project Modules
+      run: ./mvnw clean compile
